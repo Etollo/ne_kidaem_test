@@ -28,14 +28,17 @@ class Subscription(models.Model):
     blog = models.ManyToManyField(Blog)
 
     def get_blogs(self):
-        return '\n'.join([str(blogs) for blogs in self.blog.all()])
+        return ''.join([str(blogs.id) for blogs in self.blog.all()])
 
     def __str__(self):
         return self.get_blogs()
 
-
-class News(models.Model):
-    subscriptions = models.ForeignKey(Subscription, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.subscriptions
+#
+# class News(models.Model):
+#     subscriptions = models.ForeignKey(Subscription, on_delete=models.CASCADE)
+#
+#     def get_subscriptions(self):
+#         return '\n'.join([str(subscription) for subscription in self.subscriptions.all()])
+#
+#     def __str__(self):
+#         return self.get_subscriptions
